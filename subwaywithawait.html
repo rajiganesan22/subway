@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subway Surfers</title>
+</head>
+<body>
+    <script>
+        let isShopOpen = true
+        function shopOpenOrClosed(isShopOpen){
+            let myPromise = new Promise((resolve,reject)=>{
+            if(isShopOpen === true){
+                setTimeout(() =>{
+                    resolve('Welcome to Subway Surfers!!!')
+                    console.log('This is resolve method')
+                },2000)
+            }else{
+                setTimeout(() =>{
+                    reject('Shop is Closed! Come again later...')
+                    console.log('This is reject method')
+                },2000)
+            }
+            })
+            return myPromise
+        }
+
+        async function asyncFunc(){
+            const resolveOrReject = await shopOpenOrClosed(isShopOpen).then(
+                (resolve) =>{
+                    alert(resolve)
+                    setTimeout(setOrder,1000)
+                })
+                .catch((reject) => alert(reject))
+        }
+        asyncFunc()
+        
+        function setOrder(){
+            typeOfBread = prompt('Enter the type of bread\n Italian\n Multigrain\nParmesan Oregano\nHoney Oat\nRoasted Garlic\nFlatbread')
+            typeOfCheese = prompt('Enter the type of cheese\n American\n Mozerlla')
+            lettuceOption = prompt('Do you want lettuce in your sub?\n Yes or No')
+            cucumberOption = prompt('Do you want cucumber in your sub?\n Yes or No')
+            tomatoOption = prompt('Do you want tomato in your sub?\n Yes or No')
+            onionOption = prompt('Do you want onions in your sub?\n Yes or No')
+            typeOfSauce = prompt('Enter the type of signature sauce\n Red chilli\n Sweet Onion\nTandoori Mayo\nHoney mustard\nMint mayo\nBarbecue')
+            orderId = Math.floor(Math.random()*100)
+            document.write('Order Placed!')
+            document.write('Order :'+orderId +'<br>')
+            setTimeout(setCooking,5000,typeOfBread,typeOfCheese,lettuceOption,cucumberOption,tomatoOption,onionOption,typeOfSauce,cookingInProgress);
+        }
+
+        function setCooking(typeOfBread,typeOfCheese,lettuceOption,cucumberOption,tomatoOption,onionOption,typeOfSauce,callbackFn)
+        {
+            document.write('Cooking In Progress')
+            document.write('<br>')
+            if(typeOfBread != 'Italian' && typeOfBread != 'Multigrain' && typeOfBread != 'Parmesan Oregano' && typeOfBread != 'Honey Oat' && typeOfBread != 'Roasted Garlic'){
+                bread = 'Flatbread'
+            }else{
+                bread = typeOfBread
+            }
+            if(typeOfCheese != 'Mozerlla'){
+                cheese = 'American'
+            }else{
+                cheese = typeOfCheese
+            }
+            if(lettuceOption != 'yes' && lettuceOption != 'Yes' && lettuceOption != 'YES'){
+                lettuce = 'no'
+            }else{
+                lettuce = 'yes'
+            }
+            if(cucumberOption != 'yes' && cucumberOption != 'Yes' && cucumberOption != 'YES'){
+                cucumber = 'no'
+            }else{
+                cucumber = 'yes'
+            }
+            if(tomatoOption != 'yes' && tomatoOption != 'Yes' && tomatoOption != 'YES'){
+                tomato = 'no'
+            }else{
+                tomato = 'yes'
+            }
+            if(onionOption != 'yes' && onionOption != 'Yes' && onionOption != 'YES'){
+                onion = 'no'
+            }else{
+                onion = 'yes'
+            }
+            if(typeOfSauce != 'Red chilli' && typeOfSauce != 'Sweet Onion' && typeOfSauce != 'Tandoori Mayo' && typeOfSauce != 'Honey mustard' && typeOfSauce != 'Mint mayo' && typeOfSauce != 'Barbecue') 
+            {
+                sauce = 'mayonnise'
+            }else{
+                sauce = typeOfSauce
+            }
+            setTimeout(callbackFn,3000,bread,cheese,lettuce,cucumber,tomato,onion,sauce)    
+        }
+        function cookingInProgress(bread,cheese,lettuce,cucumber,tomato,onion,sauce){
+            document.write(`Your sub with ${bread} bread baked fresh added with ${cheese} cheese topped `)
+            if(lettuce === 'yes')document.write(' with lettuce,') 
+            if(cucumber === 'yes')document.write(' cucumber,')
+            if(tomato === 'yes')document.write(' tomato,')
+            if(onion === 'yes')document.write(' onion')
+            document.write(` and finished with our signature ${sauce} sauce is ready <br>`)
+        }
+    </script>
+</body>
+</html>
